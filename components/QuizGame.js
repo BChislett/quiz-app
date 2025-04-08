@@ -150,15 +150,27 @@ export default function QuizGame() {
               key={index}
               onClick={() => handleAnswer(index)}
               disabled={showAnswer}
-              className={`${getButtonColor(index)} text-white p-6 min-h-[60px] text-left relative flex items-center`}
+              className={`
+                ${getButtonColor(index)} 
+                text-white 
+                p-6 
+                min-h-[60px] 
+                text-left 
+                relative 
+                flex 
+                items-center 
+                whitespace-normal  // Add this to enable text wrapping
+                break-words       // Helps with long words
+                w-full            // Ensure full width
+              `}
             >
-              <span className="text-lg pr-8 leading-relaxed">{option}</span>
+              <span className="text-lg leading-relaxed flex-grow">{option}</span>
               {showAnswer && index === shuffledQuestions[currentQuestion].correctAnswer && (
-                <CheckCircle className="absolute right-4 text-white" size={24} />
+                <CheckCircle className="absolute right-4 text-white flex-shrink-0" size={24} />
               )}
               {showAnswer && index === selectedAnswer && 
                index !== shuffledQuestions[currentQuestion].correctAnswer && (
-                <XCircle className="absolute right-4 text-white" size={24} />
+                <XCircle className="absolute right-4 text-white flex-shrink-0" size={24} />
               )}
             </Button>
           ))}
